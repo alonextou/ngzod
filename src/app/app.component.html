@@ -1,3 +1,45 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+
+  <div class="row">
+    <h1>
+      {{title}}
+    </h1>
+    <hr/>
+  </div>
+
+  <form class="form-inline row">
+    <div class="input-group col-xl">
+      <div class="input-group-addon">Birthday</div>
+      <input [(ngModel)]="birthDate"
+      (change)="changeBirthDate(birthDate)"
+      name="birthDate"
+      class="form-control"
+      type="date">
+    </div>
+  </form>
+
+  <p *ngIf="birthDate">{{birthDate}}</p>
+
+  <div class="row">
+    <h2>Choose a Zodiac</h2>
+    <ul class="zodiacs">
+      <li *ngFor="let zodiac of zodiacs"
+        [class.selected]="zodiac === selZodiac"
+        (click)="onSelect(zodiac)" >
+        <span class="badge">{{zodiac.id}}</span> {{zodiac.name}}
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="selZodiac" class="row">
+    <h2>{{selZodiac.name}} details!</h2>
+    <div><label>id: </label>{{selZodiac.id}}</div>
+    <div><label>range: </label>{{selZodiac.range}}</div>
+
+    <div>
+      <label>name: </label>
+      <input [(ngModel)]="selZodiac.name" placeholder="name">
+    </div>
+  </div>
+
+</div>
