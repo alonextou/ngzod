@@ -28,7 +28,7 @@ const ZODIACS: Zodiac[] = [
 })
 
 export class AppComponent {
-  title = 'Zodiacs!';
+  title = 'ZODIACS';
   zodiacs = ZODIACS;
   selZodiac: Zodiac;
   birthDate: string;
@@ -44,13 +44,14 @@ export class AppComponent {
   }
 
   calculateZodiacFromMonthDay() {
-    let zodiacMatch;
+    this.selZodiac = null;
     this.zodiacs.forEach(function(zodiac) {
-      let birthDateYear = this.birthDateStamp.getYear()
+      let birthDateYear = this.birthDateStamp.getFullYear()
       let zodiacRangeStart = new Date(birthDateYear + '-' + zodiac.range[0])
       let zodiacRangeEnd = new Date(birthDateYear + '-' + zodiac.range[1])
 
-      if(this.birthDateStamp >= zodiacRangeStart && this.birthDateStamp <= zodiacRangeEnd) {
+      if(this.birthDateStamp >= zodiacRangeStart
+          && this.birthDateStamp <= zodiacRangeEnd) {
         this.selZodiac = zodiac;
       }
     }, this);
